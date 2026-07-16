@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html>
 
+    <head>
+
+        <script type="module" src="./script.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="style.css" />
+
+    </head>
+
     <body style="background-color: #292929; font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif; background-image: url(./images/Background.jpg); background-size: cover; height: 100vh;">
         
-        <div style="display: flex; justify-content: center; position: absolute; width: 100%; background-color: rgba(0, 0, 0, 1); color: #fff; border-radius: 16px; padding: 8px;">
+        <div style="display: flex; justify-content: center; width: 100%; position: absolute;">
 
-            <p style="margin-right: 8px;">
+            <div style="display: flex; justify-content: center; position: absolute; width: 100%; background-color: rgba(0, 0, 0, 1); color: #fff; border-radius: 16px;">
 
-                TorbenOS
+                <p style="margin-right: 8px;">
 
-            </p>
+                    TorbenOS
 
-            <p id="timeElement" style="margin-left: 8px;">
+                </p>
 
-                Time
-                
-            </p>
+                <p id="timeElement" style="margin-left: 8px;">
+
+                    Time
+                    
+                </p>
+
+            </div>
+
+            <div style="display: flex; justify-content: center; position: absolute; width: 80%; background-color: #000; color: #fff; margin-top: 64px; border-radius: 16px;">
+
+                <p style="cursor: pointer;" id="welcomeopen">
+
+                    Open Welcome Window
+
+                </p>
+
+            </div>
 
         </div>
 
-        <div style="border: solid; width: fit-content; border-radius: 16px; padding: 8px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #000;">
+        <div class="window" id="welcome">
 
-            <h1 style="padding: 4px; margin: 4px; background-color: #000; color: #fff">Welcome to my OS</h1>
+            <div class="windowheader">
+
+                <h1 class="headertext" id="welcomeheader" >Welcome to my OS</h1>
+
+                <div class="closebutton" id="welcomeclose"></div>
+
+            </div>          
 
             <h2>Introduction</h2>
 
@@ -61,21 +89,7 @@
 
         </div>
 
-        <script>
-
-            function updateTime() {
-
-                var currentTime = new Date().toLocaleString('de-DE');
-
-                var timeText = document.querySelector("#timeElement");
-
-                timeText.innerHTML = currentTime
-
-            }
-
-            setInterval(updateTime, 1000);
-
-        </script>
+        <script src="script.js"></script>
 
     </body>
 
