@@ -11,7 +11,7 @@
 
     <body style="background-color: #292929; font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif; background-image: url(./images/Background.jpg); background-size: cover; height: 100vh;">
         
-        <div style="display: flex; justify-content: center; width: 100%; position: absolute;">
+        <div id="top" style="display: flex; justify-content: center; width: 100%; position: absolute;">
 
             <div style="display: flex; justify-content: center; position: absolute; width: 100%; background-color: rgba(0, 0, 0, 1); color: #fff; border-radius: 16px;">
 
@@ -36,6 +36,18 @@
                     Open Welcome Window
 
                 </p>
+
+            </div>
+
+        </div>
+
+        <div id="desktopApps" style="padding-top: 192px; padding-left: 16px;">
+
+            <div id="coastervaultdesktopicon" class="deselected">
+
+                <img src="./images/CoasterVaultIcon.png" style="width: 64px; width: 64px; border-radius: 16px;">
+
+                <p style="color: #fff;">Coaster Vault</p>
 
             </div>
 
@@ -87,6 +99,24 @@
 
             <a href="https://open.spotify.com/track/400lQTCx3wYGgqAIHSZbNA?si=3bf9f85c2fc94249">My favourite song at the moment</a>
 
+        </div>
+
+        <div class="window" id="coastervault" style="display: none;">
+
+            <div class="windowheader">
+
+                <h1 class="headertext" id="coastervaultheader" >Coaster Vault</h1>
+
+                <div class="closebutton" id="coastervaultclose"></div>
+
+            </div>          
+
+            <div style="background-color: #343333; margin: 6px; border-radius: 16px; width: 520px; height: 480px; display: flex; color: #fff">
+                <div id="sidebar" style="background-color: #000; width: 520px; margin-right: 16px; padding: 16px; border-radius: 16px;">
+                </div>
+                <div id="notesContent" style="overflow-y: scroll;">
+                </div>
+            </div>
         </div>
 
         <script src="script.js"></script>

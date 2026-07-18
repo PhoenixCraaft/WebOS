@@ -68,3 +68,38 @@
 
 }
 
+.deselected {
+
+    text-align: center;
+
+    width: fit-content;
+
+    padding: 16px;
+
+    cursor: pointer;
+
+}
+
+.selected {
+
+    text-align: center;
+
+    width: fit-content;
+
+    padding: 16px;
+
+    cursor: pointer;
+
+    border: solid 2px #343333;
+
+    border-radius: 16px;
+
+}
+
+.sidebarentry {
+
+    background-color: #343333;
+
+    border-radius: 16px;
+
+}

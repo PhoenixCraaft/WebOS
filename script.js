@@ -10,9 +10,6 @@ function updateTime() {
 
 setInterval(updateTime, 1000);
 
-// Make the DIV element draggable:
-dragElement(document.getElementById("welcome"));
-
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
   // Step 2: Set up variables to keep track of the element's position.
@@ -67,9 +64,56 @@ function dragElement(element) {
 
 var welcomeScreen = document.querySelector("#welcome")
 
-var welcomeScreenClose = document.querySelector("#welcomeclose")
-
 var welcomeScreenOpen = document.querySelector("#welcomeopen")
+
+var coastervault = document.querySelector("#coastervault")
+
+var coastervaultDesktopIcon = document.querySelector("#coastervaultdesktopicon")
+
+var topBar = document.querySelector("#top")
+
+var selectedIcon = undefined
+
+var biggestIndex = 1
+
+var content = [
+
+  {
+
+    title: "Home",
+
+    date: "18/07/2026",
+
+    content: 
+              `
+              <p contenteditable="True">
+              <span contenteditable="true">Welcome to Coaster Vault
+                  <br>
+                  <br>
+                  This is a place where I store some of my opinions about some Rollercoasters I have ridden.
+              </span>
+              </p>
+    `
+  },
+  {
+
+    title: "Voltron",
+
+    date: "18/07/2026",
+
+    content: `
+    
+    <P contenteditable="True">
+    
+    Voltron Nevera, powered by Rimac in Europapark, Rust is in my opinion the best rollercoaster in Germany.
+
+    </p>
+    
+    `
+
+  }
+
+]
 
 function closeWindow(element) {
 
@@ -79,18 +123,146 @@ function closeWindow(element) {
 
 function openWindow(element) {
 
-  element.style.display = "block"
+  element.style.display = "block";
+
+  biggestIndex++;
+
+  element.style.zIndex = biggestIndex;
+
+  topBar.style.zIndex = biggestIndex + 1;
 
 }
 
-welcomeScreenClose.addEventListener("click", function() {
+function makeClosable(element, closeElement) {
 
-  closeWindow(welcomeScreen);
+  closeElement.addEventListener("click", () => closeWindow(element))
 
-});
+}
 
-welcomeScreenOpen.addEventListener("click", function() {
+function selectIcon(element) {
 
-  openWindow(welcomeScreen);
+  element.classList.remove("deselected");
 
-});
+  element.classList.add("selected");
+
+  selectedIcon = element
+
+}
+
+function deselectIcon(element) {
+
+  element.classList.remove("selected");
+
+  element.classList.add("deselected");
+
+  selectedIcon = element
+
+}
+
+function handleIconTap(element, targetWindow) {
+
+  if (element.classList.contains("selected")) {
+
+    deselectIcon(element)
+
+    openWindow(targetWindow)
+
+  } else {
+
+    selectIcon(element)
+
+  }
+
+} 
+
+function addWindowTapHandling(element) {
+
+  element.addEventListener("mousedown", () => handleWindowTap(element))
+
+}
+
+function handleWindowTap(element) {
+
+  biggestIndex++;
+
+  element.style.zIndex = biggestIndex;
+
+  topBar.style.zIndex = biggestIndex + 1;
+
+  deselectIcon(selectIcon)
+
+}
+
+function initializeWindow(elementName) {
+
+  var screen = document.querySelector("#" + elementName)
+
+  var closeScreen = document.querySelector("#" + elementName + "close")
+
+  addWindowTapHandling(screen)
+
+  dragElement(screen)
+
+  makeClosable(screen, closeScreen)
+
+}
+
+function setNotesContent(index) {
+
+  var notesContent = document.querySelector("#notesContent")
+
+  notesContent.innerHTML = content[index].content
+
+}
+
+function addToSideBar(index) {
+
+  var sidebar = document.querySelector("#sidebar");
+
+  var note = content[index];
+
+  var newDiv = document.createElement("div");
+
+  newDiv.classList.add("sidebarentry")
+
+  newDiv.innerHTML = `
+  
+  <p style="margin: 0px;">
+
+    ${note.title}
+
+  </p>
+
+  <p style="font-size: 12px; margin: 0px;">
+
+    ${note.date}
+
+  </p>
+  
+  `
+
+  newDiv.addEventListener("click", function() {
+
+    setNotesContent(index);
+
+  });
+
+  sidebar.appendChild(newDiv);
+
+}
+
+for (let i = 0; i< content.length; i++) {
+
+  addToSideBar(i)
+
+}
+
+setNotesContent(0)
+
+welcomeScreenOpen.addEventListener("click", () => openWindow(welcomeScreen));
+
+coastervaultDesktopIcon.addEventListener("click", () => handleIconTap(coastervaultDesktopIcon, coastervault))
+
+initializeWindow("welcome")
+
+initializeWindow("coastervault")
